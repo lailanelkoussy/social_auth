@@ -1,12 +1,15 @@
 package com.social.auth.model;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = {"userName"}, name="USER_UNIQUE_USERNAME"))
+@Data
+//@Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = {"userName"}, name="USER_UNIQUE_USERNAME"))
 public class User {
 
 	@Id
@@ -15,7 +18,7 @@ public class User {
 	private Integer id;
 
 	@Column(length=50)
-	private String userName;
+	private String username;
 
 	@Column
 	private String password;
@@ -36,67 +39,4 @@ public class User {
 			CascadeType.ALL }, orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Boolean getAccountExpired() {
-		return accountExpired;
-	}
-
-	public void setAccountExpired(Boolean accountExpired) {
-		this.accountExpired = accountExpired;
-	}
-
-	public Boolean getAccountLocked() {
-		return accountLocked;
-	}
-
-	public void setAccountLocked(Boolean accountLocked) {
-		this.accountLocked = accountLocked;
-	}
-
-	public Boolean getCredentialsExpired() {
-		return credentialsExpired;
-	}
-
-	public void setCredentialsExpired(Boolean credentialsExpired) {
-		this.credentialsExpired = credentialsExpired;
-	}
-
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public Set<UserAuthority> getUserAuthorities() {
-		return userAuthorities;
-	}
-
-	public void setUserAuthorities(Set<UserAuthority> userAuthorities) {
-		this.userAuthorities = userAuthorities;
-	}
 }
